@@ -8,7 +8,7 @@
         <version>2.2.11.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jumper.eureka.consumer</groupId>
+    <groupId>com.eureka.consumer</groupId>
     <artifactId>eureka-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eureka-consumer</name>

@@ -1,4 +1,4 @@
-package com.jumper.eureka.consumer.feign;
+package com.eureka.consumer.feign;
 
 import org.springframework.stereotype.Component;
 

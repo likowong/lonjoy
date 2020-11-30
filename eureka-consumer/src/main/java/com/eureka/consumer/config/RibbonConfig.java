@@ -1,4 +1,4 @@
-package com.jumper.eureka.consumer.config;
+package com.eureka.consumer.config;
 
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
