@@ -1,4 +1,4 @@
-package com.eureka.clientb;
+package com.eureka.clienta;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
