@@ -19,5 +19,7 @@
         <module>eureka-clientB</module>
         <module>eureka-consumer</module>
         <module>gateway</module>
+        <module>config</module>
+        <module>distributed-lock</module>
     </modules>
 </project>

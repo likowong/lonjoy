@@ -1,6 +1,6 @@
 
 server:
-  port: 9999
+  port: 9998
 spring:
   profiles:
     active: dev
@@ -30,7 +30,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:10025/eureka/
+      defaultZone: http://127.0.0.1:8700/eureka/
 
 
 # 暴露端点
