@@ -1,0 +1,27 @@
+
+server:
+  port: 9999
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-dynamic-route
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # 服务名小写
+          lower-case-service-id: true
+
+# 注册中心
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:10025/eureka/
+
+
+
+
