@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class IndexController {
 
-    @Value("${springcloud.book.config:123}")
+    @Value("${demo}")
     private String book;
 
-    @RequestMapping("/getBookConfig")
-    public String getBookConfig(){
+    @RequestMapping("/getDemoConfig")
+    public String getDemoConfig(){
         return book;
     }
 }

@@ -13,6 +13,11 @@
     <artifactId>springcloud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+    </properties>
     <modules>
         <module>eureka</module>
         <module>eureka-clientA</module>

@@ -1,6 +1,6 @@
 
 # config-server会在本地的临时目录下克隆远程仓库中的信息
-# 保存在本机：C:\Users\zhuyu\AppData\Local\Temp\config-repo-315688083391782199\config-info
+# 保存在本机：C:\Users\wl\AppData\Local\Temp\config-repo-315688083391782199\config-info
 # 可更改本地仓库clone的配置文件信息的路径 spring.cloud.config.server.git.basedir=D:\\localGitRepo\\
 
 
@@ -17,17 +17,18 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/zhuyu1991/spring-config-repo.git  # git仓库的地址
+          uri: https://github.com/likowong/springCloud-config.git  # git仓库的地址
           searchPaths: config-info                                 # git仓库地址下的相对地址，可以配置多个，用,分割
-          username: 用户名                                         # git仓库的账号
-          password: 密码                                           # git仓库的密码
+          username: 15010343670@163.com                            # git仓库的账号
+          password: wanglin0123203                                 # git仓库的密码
+      label: master
 
   rabbitmq:
-    host: 192.168.1.101
+    host: 127.0.0.1
     port: 5672
-    username: 用户名
-    password: 密码
-    virtual-host: zy_vhosts
+    username: wanglin
+    password: 123456
+    virtual-host: wl_vhosts
 
 
 # 注册中心配置
@@ -36,5 +37,5 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://zy:zy123@localhost:10025/eureka/
+      defaultZone: http://127.0.0.1:8700/eureka/
 
