@@ -21,7 +21,7 @@ public class ClientController {
     @GetMapping("/sayHello")
     public String sayHello() throws InterruptedException {
         //throw new RuntimeException("1231");
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         return "say helloB";
     }
 }

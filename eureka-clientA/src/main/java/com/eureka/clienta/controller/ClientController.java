@@ -20,7 +20,7 @@ public class ClientController {
      */
     @GetMapping("/sayHello")
     public String sayHello() throws InterruptedException {
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         return "say helloA";
     }
 }

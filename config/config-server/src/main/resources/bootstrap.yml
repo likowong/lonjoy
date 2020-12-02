@@ -6,5 +6,9 @@ management:
       exposure:
         include: '*'
   endpoint:
+    bus-env:
+      enabled: true
+    bus-refresh:
+      enabled: true
     health:
       show-details: always
