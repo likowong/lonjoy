@@ -1,10 +1,10 @@
 
 server:
-  port: 2004
+  port: 2005
 
 spring:
   application:
-    name: config-client
+    name: client
   rabbitmq:
     host: 127.0.0.1
     port: 5672
