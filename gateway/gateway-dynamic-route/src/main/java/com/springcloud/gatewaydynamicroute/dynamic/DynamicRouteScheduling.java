@@ -31,7 +31,7 @@ public class DynamicRouteScheduling {
     @Autowired private DynamicRouteService dynamicRouteService;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final String dynamicRouteServerName = "dynamic-route-service";
+    private static final String dynamicRouteServerName = "gateway-service";
 
     //发布路由信息的版本号
     private static Long versionId = 0L;
