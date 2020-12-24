@@ -17,6 +17,6 @@ public class RibbonConfig {
     @Bean
     public IRule ribbonRule() {
         // 其中IRule就是所有规则的标准,指定随机访问
-        return new RandomRule() ;
+        return new RandomRule();
     }
 }

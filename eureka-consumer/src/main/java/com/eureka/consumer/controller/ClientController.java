@@ -23,6 +23,7 @@ public class ClientController {
 
     @Autowired
     private SayHelloService sayHelloService;
+
     /**
      * 实例化RestTemplate
      *

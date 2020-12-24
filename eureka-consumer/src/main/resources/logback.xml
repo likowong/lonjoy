@@ -14,8 +14,8 @@
     </appender>
 
 
-<!--    <appender name="online" class="com.jumper.tasks.logs.OnlineLog">-->
-<!--    </appender>-->
+    <!--    <appender name="online" class="com.jumper.tasks.logs.OnlineLog">-->
+    <!--    </appender>-->
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--定义日志输出的路径-->
@@ -40,7 +40,7 @@
         <!--定义了两个appender，日志会通过往这两个appender里面写-->
         <appender-ref ref="stdout"/>
         <appender-ref ref="file"/>
-<!--        <appender-ref ref="online"/>-->
+        <!--        <appender-ref ref="online"/>-->
     </root>
 
     <!--对于类路径以 com.example.logback 开头的Logger,输出级别设置为warn,并且只输出到控制台-->
@@ -51,7 +51,6 @@
     <!--由于这个logger自动继承了root的appender，root中已经有stdout的appender了，自己这边又引入了stdout的appender-->
     <!--如果没有设置 additivity="false" ,就会导致一条日志在控制台输出两次的情况-->
     <!--additivity表示要不要使用rootLogger配置的appender进行输出-->
-
 
 
 </configuration>

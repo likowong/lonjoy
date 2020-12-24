@@ -18,7 +18,7 @@ public class GetawayConfig {
         RouteLocatorBuilder.Builder routes = builder.routes();
         //跳转到百度新闻国内栏目
         routes.route("news", (r) ->
-                    r.path("/guonei/**").
+                r.path("/guonei/**").
                         uri("http://news.baidu.com/guonei"))
 
 //                .route("cookie_route", r -> r.cookie("TotalPage", "14")
@@ -28,8 +28,8 @@ public class GetawayConfig {
                 .route("host_route", r -> r.host("**.wanglin.com")
                         .uri("https://spring.io/"))
                 .route("search", (r) ->
-                    r.path("/search").filters(f -> f.stripPrefix(1)).
-                        uri("http://www.baidu.com")).build();
+                        r.path("/search").filters(f -> f.stripPrefix(1)).
+                                uri("http://www.baidu.com")).build();
         return routes.build();
     }
 }

@@ -30,7 +30,7 @@ public class GlobalExceptionHandler extends DefaultHandlerExceptionResolver {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public String processUnauthenticatedException(HttpServletRequest request, HttpServletResponse response, Throwable e) {
-        logger.error("地址:"+request.getRequestURI()+"发生错误,错误内容:",e);
+        logger.error("地址:" + request.getRequestURI() + "发生错误,错误内容:", e);
         // 业务异常处理
 
         return "系统太忙,请稍后再试!";

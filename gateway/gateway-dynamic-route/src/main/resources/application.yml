@@ -8,11 +8,11 @@ spring:
   cloud:
     gateway:
       routes:
-#       - id : After_Route
-#         predicates:
-#         - After=2018-03-18T17:32:58.129+08:00[Asia/Shanghai]
-#         uri: http://www.baidu.com
-        - id : method_Route
+        #       - id : After_Route
+        #         predicates:
+        #         - After=2018-03-18T17:32:58.129+08:00[Asia/Shanghai]
+        #         uri: http://www.baidu.com
+        - id: method_Route
           uri: https://www.processon.com/diagrams
           predicates:
             - Method=Put

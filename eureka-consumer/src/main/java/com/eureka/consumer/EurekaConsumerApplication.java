@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableEurekaClient
 @EnableFeignClients
-@RibbonClient(name="ribbonClient",configuration= RibbonConfig.class)
+@RibbonClient(name = "ribbonClient", configuration = RibbonConfig.class)
 @SpringBootApplication
 public class EurekaConsumerApplication {
 
