@@ -6,5 +6,5 @@ package com.nacos.client.service;
  * @desc demo
  **/
 public interface NacosService {
-    public String hello(String serviceName);
+    public String hello(String serviceName) throws InterruptedException;
 }

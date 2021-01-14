@@ -1,0 +1,30 @@
+server:
+  port: 8060
+
+####服务监控server端
+spring:
+  application:
+    name: jumper-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        metadata:
+          user.name: "admin"
+          user.password: "admin"
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# 日志 集成logging后需设置日志路径
+logging:
+  file: /application/applogs/admin.log

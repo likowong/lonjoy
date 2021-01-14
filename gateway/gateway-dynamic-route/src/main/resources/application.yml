@@ -1,5 +1,5 @@
 server:
-  port: 9999
+  port: 9998
 spring:
   profiles:
     active: dev
@@ -40,14 +40,32 @@ spring:
           enabled: true
           # 服务名小写
           lower-case-service-id: true
+    sentinel:
+      transport:
+        dashboard: localhost:9999
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+      filter:
+        enable: true
+
+nacos:
+  discovery:
+    server-addr: localhost:8848
+
 
 # 注册中心
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8700/eureka/
+#eureka:
+#  instance:
+#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8700/eureka/
 
 
 

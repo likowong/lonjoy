@@ -17,19 +17,21 @@ public class GetawayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         RouteLocatorBuilder.Builder routes = builder.routes();
         //跳转到百度新闻国内栏目
-        routes.route("news", (r) ->
-                r.path("/guonei/**").
-                        uri("http://news.baidu.com/guonei"))
-
-//                .route("cookie_route", r -> r.cookie("TotalPage", "14")
-//                        .uri("http://www.baidu.com"))
+        routes.route("news", (r) -> r.path("/guonei/**").
+                uri("http://news.baidu.com/guonei"))
+                .route("cookie_route", r -> r.cookie("TotalPage", "14")
+                        .uri("http://www.baidu.com"))
                 .route("cookie_route", r -> r.header("demo", "test")
                         .uri("https://spring.io/"))
                 .route("host_route", r -> r.host("**.wanglin.com")
                         .uri("https://spring.io/"))
-                .route("search", (r) ->
-                        r.path("/search").filters(f -> f.stripPrefix(1)).
-                                uri("http://www.baidu.com")).build();
+                .route("search", (r) -> r.path("/search").filters(f -> f.stripPrefix(1)).
+                        uri("http://www.baidu.com"))
+                .route("nacos-client", (r) -> r.path("/nacos-client/**")
+                        .uri("lb://nacos-client"))
+                .route("nacos-consumer", (r) -> r.path("/nacos-consumer/**")
+                        .uri("lb://nacos-consumer"))
+                .build();
         return routes.build();
     }
 }

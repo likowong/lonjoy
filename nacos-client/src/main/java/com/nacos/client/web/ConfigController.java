@@ -32,8 +32,11 @@ public class ConfigController {
     @Value(value = "${useLocalCache:1234}")
     private String useLocalCache;
 
-    public void setUseLocalCache(String useLocalCache) {
-        this.useLocalCache = useLocalCache;
+    @Value(value = "${apolloText:1234}")
+    private String apolloText;
+
+    public void setApolloText(String apolloText) {
+        this.apolloText = apolloText;
     }
 
     @RequestMapping(value = "/get", method = GET)
@@ -41,11 +44,15 @@ public class ConfigController {
     public String get() {
         return useLocalCache;
     }
-
+    @RequestMapping(value = "/getApollo", method = GET)
+    @ResponseBody
+    public String getApollo() {
+        return apolloText;
+    }
 
     @RequestMapping(value = "/hello", method = GET)
     @ResponseBody
-    public String hello(String serviceName){
+    public String hello(String serviceName) throws InterruptedException {
         return nacosService.hello(serviceName);
     }
 }
