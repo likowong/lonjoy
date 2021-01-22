@@ -21,17 +21,11 @@
         <spring-cloud.alibaba.version>2.2.4.RELEASE</spring-cloud.alibaba.version>
     </properties>
     <modules>
-        <module>eureka</module>
-        <module>eureka-clientA</module>
-        <module>eureka-clientB</module>
-        <module>eureka-consumer</module>
         <module>gateway</module>
-        <module>config</module>
-        <module>distributed-lock</module>
         <module>nacos-client</module>
         <module>nacos-consumer</module>
         <module>rocketMq</module>
-        <module>graphql</module>
+        <module>bff-graphql</module>
         <module>spring-boot-admin</module>
         <module>springcloud-common</module>
     </modules>

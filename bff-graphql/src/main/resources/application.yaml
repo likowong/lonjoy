@@ -1,0 +1,45 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: bff-graphql
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.20:8848
+  data:
+    mongodb:
+      authentication-database: admin
+      host: 127.0.0.1
+      port: 27017
+      database: config
+  boot:
+    admin:
+      client:
+        url: 192.168.1.20:8060
+        username: "admin"
+        password: "admin"
+        instance:
+          prefer-ip: true
+
+#### 暴露端点
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+      show-details: ALWAYS
+
+logging:
+  config: classpath:logging-config.xml
+  level:
+    org:
+      springframework:
+        web: info
+  pattern:
+    #     日志高亮
+    file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx'
