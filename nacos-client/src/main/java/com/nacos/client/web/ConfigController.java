@@ -44,6 +44,7 @@ public class ConfigController {
     public String get() {
         return useLocalCache;
     }
+
     @RequestMapping(value = "/getApollo", method = GET)
     @ResponseBody
     public String getApollo() {

@@ -12,7 +12,7 @@ public class SayHelloErrorService implements SayHelloService {
 
     @Override
     public String hello(String serviceName) {
-        return serviceName+"被熔断了";
+        return serviceName + "被熔断了";
 
     }
 }

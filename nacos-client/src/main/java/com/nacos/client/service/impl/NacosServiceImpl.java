@@ -13,11 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class NacosServiceImpl implements NacosService {
     @Override
-    @SentinelResource(value = "NacosServiceImpl#hello",defaultFallback="bonjourFallback")
+    @SentinelResource(value = "NacosServiceImpl#hello", defaultFallback = "bonjourFallback")
     public String hello(String serviceName) throws InterruptedException {
         Thread.sleep(5000);
         return "nacos server test " + serviceName;
     }
+
     public String bonjourFallback(Throwable t) {
         if (BlockException.isBlockException(t)) {
             return "Blocked by Sentinel: " + t.getClass().getSimpleName();

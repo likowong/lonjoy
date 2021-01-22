@@ -29,7 +29,6 @@
         <module>distributed-lock</module>
         <module>nacos-client</module>
         <module>nacos-consumer</module>
-        <module>rmi</module>
         <module>rocketMq</module>
     </modules>
 </project>
