@@ -30,5 +30,14 @@
         <module>nacos-client</module>
         <module>nacos-consumer</module>
         <module>rocketMq</module>
+        <module>graphql</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
