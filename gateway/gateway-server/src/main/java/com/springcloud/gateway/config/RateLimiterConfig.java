@@ -1,4 +1,4 @@
-package com.springcloud.gateway;
+package com.springcloud.gateway.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;

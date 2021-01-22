@@ -1,4 +1,4 @@
-package com.springcloud.gateway;
+package com.springcloud.gateway.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;

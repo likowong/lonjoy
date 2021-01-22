@@ -1,72 +1,11 @@
 server:
   port: 9998
 spring:
-  profiles:
-    active: dev
   application:
     name: gateway-dynamic-route
   cloud:
-    gateway:
-      routes:
-        #       - id : After_Route
-        #         predicates:
-        #         - After=2018-03-18T17:32:58.129+08:00[Asia/Shanghai]
-        #         uri: http://www.baidu.com
-        - id: method_Route
-          uri: https://www.processon.com/diagrams
-          predicates:
-            - Method=Put
-        - id: query_Route
-          uri: https://blog.csdn.net/
-          predicates:
-            - Query=name
-        - id: Remote_Route
-          uri: https://www.json.cn/
-          predicates:
-            - RemoteAddr=127.0.0.1
-        - id: weight_Route1
-          uri: https://www.json.cn/
-          predicates:
-            - Path=/ test/**
-            - Weight=group1,3
-        - id: weight_Route2
-          uri: http://www.fastgo.icu/
-          predicates:
-            - Path=/ test/**
-            - Weight=group2,4
-
+    nacos:
       discovery:
-        locator:
-          enabled: true
-          # 服务名小写
-          lower-case-service-id: true
-    sentinel:
-      transport:
-        dashboard: localhost:9999
-      datasource:
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: cloudalibaba-sentinel-service
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
-      filter:
-        enable: true
-
-nacos:
-  discovery:
-    server-addr: localhost:8848
-
-
-# 注册中心
-#eureka:
-#  instance:
-#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-#  client:
-#    service-url:
-#      defaultZone: http://127.0.0.1:8700/eureka/
-
-
+        server-addr: 192.168.1.20:8848
 
 

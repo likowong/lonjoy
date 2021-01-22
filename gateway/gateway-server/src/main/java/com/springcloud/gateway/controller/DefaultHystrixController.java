@@ -1,4 +1,4 @@
-package com.springcloud.gateway;
+package com.springcloud.gateway.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -8,20 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
-@EnableScheduling
 @EnableDiscoveryClient
 @SpringBootApplication
 public class GatewayDynamicRouteApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GatewayDynamicRouteApplication.class, args);
-    }
-
-
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 }
 
