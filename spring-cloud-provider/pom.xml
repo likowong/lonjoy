@@ -13,5 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>dubbo-provider</module>
+        <module>oauth-provider</module>
     </modules>
 </project>

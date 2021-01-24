@@ -34,6 +34,10 @@ spring:
           uri: lb://bff-restfulapi
           predicates:
             - Path=/bff-restfulapi/**
+        - id: auth-provider
+          uri: lb://oauth-provider
+          predicates:
+            - Path=/oauth/**
   boot:
     admin:
       client:
@@ -42,6 +46,16 @@ spring:
         password: "admin"
         instance:
           prefer-ip: true
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
+dubbo:
+  protocol:
+    name: dubbo
+    port: 20888
+  registry:
+    address: spring-cloud://localhost
 management:
   endpoints:
     web:
@@ -54,3 +68,7 @@ swagger:
   ignore:
     client:
       client-Ids:
+gateway:
+  ignore:
+    authentication:
+      startWith: /oauth,/open

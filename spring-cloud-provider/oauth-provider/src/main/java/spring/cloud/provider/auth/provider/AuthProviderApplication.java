@@ -1,19 +1,23 @@
-package spring.cloud.gateway;
+package spring.cloud.provider.auth.provider;
 
 import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
-import org.springframework.context.annotation.Bean;
 
+/**
+ * @author luke
+ */
+@MapperScan(basePackages = "spring.cloud.provider.auth.provider.dao")
 @DubboComponentScan
-@EnableDiscoveryClient
 @SpringBootApplication
-public class GatewayApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
-    }
-}
+@EnableDiscoveryClient
+public class AuthProviderApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(AuthProviderApplication.class, args);
+    }
+
+}
