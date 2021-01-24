@@ -1,0 +1,56 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 192.168.1.20:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.1.20:8848
+            dataId: spring-cloud-alibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+      filter:
+        enable: true
+    nacos:
+      discovery:
+        server-addr: 192.168.1.20:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: bff-graphql
+          uri: lb://bff-graphql
+          predicates:
+            - Path=/bff-graphql/**
+        - id: bff-restFulApi
+          uri: lb://bff-restfulapi
+          predicates:
+            - Path=/bff-restfulapi/**
+  boot:
+    admin:
+      client:
+        url: 192.168.1.20:8060
+        username: "admin"
+        password: "admin"
+        instance:
+          prefer-ip: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+swagger:
+  ignore:
+    client:
+      client-Ids:
