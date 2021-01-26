@@ -1,4 +1,4 @@
-package spring.cloud.provider.auth.provider.service;
+package spring.cloud.provider.auth.provider.oauth2;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +10,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import spring.cloud.provider.auth.provider.entity.Role;
 import spring.cloud.provider.auth.provider.entity.User;
+import spring.cloud.provider.auth.provider.service.IRoleService;
+import spring.cloud.provider.auth.provider.service.IUserService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service("userDetailsService")
 @Slf4j
+@Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -24,13 +26,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     private IRoleService roleService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
+    public UserDetails loadUserByUsername(String uniqueId) {
 
-        User user = userService.getByUsername(username);
-        log.info("loadByUsername:{}", user.toString());
+        User user = userService.getByUniqueId(uniqueId);
+        log.info("load user by username :{}", user.toString());
 
         return new org.springframework.security.core.userdetails.User(
-                username,
+                user.getUsername(),
                 user.getPassword(),
                 user.getEnabled(),
                 user.getAccountNonExpired(),
@@ -45,11 +47,9 @@ public class CustomUserDetailsService implements UserDetailsService {
      * @param user
      * @return
      */
-    private Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
+    protected Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
         Set<Role> roles = roleService.queryUserRolesByUserId(user.getId());
         log.info("user:{},roles:{}", user.getUsername(), roles);
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getCode()))
-                .collect(Collectors.toSet());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getCode())).collect(Collectors.toSet());
     }
 }

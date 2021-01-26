@@ -8,5 +8,5 @@ import spring.cloud.provider.auth.provider.entity.User;
 public interface IUserService {
 
     @Cacheable(value = "#id")
-    User getByUsername(String username);
+    User getByUniqueId(String username);
 }

@@ -2,6 +2,7 @@ package spring.cloud.provider.auth.provider.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,20 +13,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import spring.cloud.provider.auth.provider.oauth2.granter.MobileAuthenticationProvider;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
-@Slf4j
 public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsService userDetailsService;
+    @Qualifier("userDetailsService")
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    @Qualifier("mobileUserDetailsService")
+    private UserDetailsService mobileUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .anyRequest().authenticated();
+                .antMatchers("/actuator/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().permitAll();
     }
 
     /**
@@ -39,6 +49,8 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+        // 设置手机验证码登陆的AuthenticationProvider
+        authenticationManagerBuilder.authenticationProvider(mobileAuthenticationProvider());
     }
 
     /**
@@ -55,4 +67,15 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 创建手机验证码登陆的AuthenticationProvider
+     *
+     * @return mobileAuthenticationProvider
+     */
+    @Bean
+    public MobileAuthenticationProvider mobileAuthenticationProvider() {
+        MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider(this.mobileUserDetailsService);
+        mobileAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return mobileAuthenticationProvider;
+    }
 }

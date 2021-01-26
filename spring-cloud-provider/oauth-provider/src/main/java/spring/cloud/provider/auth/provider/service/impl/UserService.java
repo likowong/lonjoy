@@ -13,7 +13,7 @@ public class UserService implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public User getByUsername(String username) {
+    public User getByUniqueId(String username) {
         return userMapper.getByUsername(username);
     }
 }

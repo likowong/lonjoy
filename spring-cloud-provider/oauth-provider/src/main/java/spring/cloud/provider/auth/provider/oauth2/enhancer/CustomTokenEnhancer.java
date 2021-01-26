@@ -1,11 +1,10 @@
-package spring.cloud.provider.auth.provider.config.custom;
+package spring.cloud.provider.auth.provider.oauth2.enhancer;
 
 import com.google.common.collect.Maps;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-
 
 import java.util.Map;
 
