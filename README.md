@@ -6,8 +6,8 @@
 - spring cloud sentinel
 - spring cloud nacos discovery
 - spring cloud nacos config
-- sprng cloud seata
-- sprng cloud rocketMq
+- spring cloud seata
+- spring cloud rocketMq
 - spring boot graphql 
 - spring boot security
 - spring boot security oauth2
