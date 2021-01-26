@@ -30,14 +30,20 @@ spring:
           uri: lb://bff-graphql
           predicates:
             - Path=/bff-graphql/**
+          filters:
+            - StripPrefix=1
         - id: bff-restFulApi
           uri: lb://bff-restfulapi
           predicates:
             - Path=/bff-restfulapi/**
+          filters:
+            - StripPrefix=1
         - id: auth-provider
           uri: lb://oauth-provider
           predicates:
             - Path=/oauth/**
+          filters:
+            - StripPrefix=1
   boot:
     admin:
       client:
