@@ -7,8 +7,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.nacos.client</groupId>
-    <artifactId>nacos-client</artifactId>
+    <groupId>com.dubbo-provider</groupId>
+    <artifactId>dubbo-provider</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>dubbo-provider</name>
     <description>dubbo-provider project for Spring Boot</description>
