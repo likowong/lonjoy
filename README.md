@@ -11,7 +11,7 @@
 - spring boot graphql 
 - spring boot security
 - spring boot security oauth2
-- spring boot mognodb
+- spring boot mongodb
 - spring boot redis
 - spring boot admin
 
