@@ -48,4 +48,12 @@ public interface AuthService {
      * @return Jwt对象
      */
     Jwt getJwt(String authentication);
+
+    /**
+     * 从认证信息中提取jwt token 对象
+     *
+     * @param authentication 认证信息  Authorization: bearer header.payload.signature
+     * @return Jwt对象
+     */
+    String getJwtString(String authentication);
 }

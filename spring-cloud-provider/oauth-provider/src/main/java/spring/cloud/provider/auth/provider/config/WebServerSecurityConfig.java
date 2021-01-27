@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,15 +30,37 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("mobileUserDetailsService")
     private UserDetailsService mobileUserDetailsService;
 
+    //Http安全配置，对每个到达系统的http请求链接进行校验
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
+        log.debug("HttpSecurity configure method");
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/actuator/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll();
+                .antMatchers("/v2/api-docs").permitAll()
+                .anyRequest().authenticated();
     }
+    /**
+     * 忽略拦截url或静态资源文件夹 - web.ignoring(): 会直接过滤该url - 将不会经过Spring Security过滤器链
+     * http.permitAll(): 不会绕开springsecurity验证，相当于是允许该路径通过
+     *
+     * @param web
+     * @throws Exception
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //放行swagger
+        web.ignoring().antMatchers(
+                "/actuator/**",
+                "/v2/api-docs",
+                "/swagger-resources",
+                "/swagger-resources/**",
+                "/configuration/ui",
+                "/configuration/security",
+                "/swagger-ui.html/**",
+                "/webjars/**");
+    }
+
 
     /**
      * 注入自定义的userDetailsService实现，获取用户信息，设置密码加密方式

@@ -12,6 +12,6 @@ import spring.cloud.provider.auth.provider.service.IAuthenticationService;
 public class IAuthenticationServiceImpl implements IAuthenticationService {
     @Override
     public boolean decide(String authentication, String url, String method) {
-        return false;
+        return true;
     }
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import java.util.Map;
 /**
  * 用户信息拦截器
  */
-@Component
 @Slf4j
 public class UserInterceptor implements HandlerInterceptor {
     /**

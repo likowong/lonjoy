@@ -1,5 +1,7 @@
 package spring.cloud.gateway.exception;
 
+import com.spring.cloud.common.GlobalException;
+import com.spring.cloud.common.GlobalResponseCode;
 import com.spring.cloud.common.Result;
 import io.netty.channel.ConnectTimeoutException;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +44,13 @@ public class GateWayExceptionHandlerAdvice {
         return Result.buildFailResBody();
     }
 
+    @ExceptionHandler(value = {RuntimeException.class})
+    @ResponseStatus(HttpStatus.OK)
+    public Result handle(GlobalException ex) {
+        log.error("runtime exception:{}", ex.getMessage());
+        return Result.buildFailResBody(new GlobalResponseCode(((GlobalException) ex).getErrorStatus(), ((GlobalException) ex).getErrorCode(), ((GlobalException) ex).getContent()));
+    }
+
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result handle(Exception ex) {
@@ -63,6 +72,9 @@ public class GateWayExceptionHandlerAdvice {
             result = handle((RuntimeException) throwable);
         } else if (throwable instanceof Exception) {
             result = handle((Exception) throwable);
+        }
+        if (throwable instanceof GlobalException) {
+            result = handle((GlobalException) throwable);
         }
         return result;
     }

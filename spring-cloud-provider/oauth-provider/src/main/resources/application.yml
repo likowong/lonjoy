@@ -56,10 +56,6 @@ management:
     health:
       enabled: true
       show-details: ALWAYS
-gateway:
-  ignore:
-    authentication:
-      startWith: /oauth,/open
 logging:
   config: classpath:logging-config.xml
   level:

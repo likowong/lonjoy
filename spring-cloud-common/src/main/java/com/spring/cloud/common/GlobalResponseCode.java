@@ -40,6 +40,7 @@ public class GlobalResponseCode implements Serializable {
     public static final GlobalResponseCode SERVICE_NOT_EXIST = new GlobalResponseCode(3, SERVICE_NO_FOUND,"服务未找到!");
     public static final GlobalResponseCode SERVICE_FAILED = new GlobalResponseCode(4, SERVICE_INVOKE_ERROR, "服务调用失败!");
     public static final GlobalResponseCode NO_PERMISSION = new GlobalResponseCode(5, NOT_PERMISSION, "没有权限!");
+    public static final GlobalResponseCode TOKEN_IS_EMPTY = new GlobalResponseCode(6, NOT_PERMISSION, "token为空!");
 
 
     /**************************************业务异常，可在子类定义自定义*******************************/

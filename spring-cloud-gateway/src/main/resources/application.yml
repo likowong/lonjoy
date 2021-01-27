@@ -41,7 +41,7 @@ spring:
         - id: auth-provider
           uri: lb://oauth-provider
           predicates:
-            - Path=/oauth/**
+            - Path=/oauth/**,/oauth-provider/**
           filters:
             - StripPrefix=1
   boot:
@@ -77,4 +77,4 @@ swagger:
 gateway:
   ignore:
     authentication:
-      startWith: /oauth,/open
+      startWith: /oauth,/open,/v2/api-docs,/swagger,/webjars

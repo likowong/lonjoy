@@ -1,8 +1,11 @@
 package spring.cloud.gateway.filter;
 
+import com.spring.cloud.common.GlobalException;
+import com.spring.cloud.common.GlobalResponseCode;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +17,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import spring.cloud.dubbo.api.AuthService;
+
+import java.util.stream.Stream;
 
 /**
  * 请求url权限校验
@@ -28,6 +33,9 @@ public class AccessGatewayFilter implements GlobalFilter {
     @DubboReference
     private AuthService authService;
 
+    @Value("${gateway.ignore.authentication.startWith}")
+    private String ignoreUrls = "/oauth,/v2/api-docs";
+
     /**
      * 1.首先网关检查token是否有效，无效直接返回401，不调用签权服务
      * 2.调用签权服务器看是否对该请求有权限，有权限进入下一个filter，没有权限返回401
@@ -38,22 +46,28 @@ public class AccessGatewayFilter implements GlobalFilter {
      */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+
         ServerHttpRequest request = exchange.getRequest();
         String authentication = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         String method = request.getMethodValue();
         String url = request.getPath().value();
         log.debug("url:{},method:{},headers:{}", url, method, request.getHeaders());
+
         //不需要网关签权的url
-        if (authService.ignoreAuthentication(url)) {
+        if (Stream.of(this.ignoreUrls.split(",")).anyMatch(ignoreUrl -> url.startsWith(StringUtils.trim(ignoreUrl)))) {
             return chain.filter(exchange);
         }
+        if(StringUtils.isEmpty(authentication)){
+            throw new GlobalException(GlobalResponseCode.TOKEN_IS_EMPTY);
+        }
+
         //调用签权服务看用户是否有权限，若有权限进入下一个filter
         if (authService.hasPermission(authentication, url, method)) {
             ServerHttpRequest.Builder builder = request.mutate();
             //TODO 转发的请求都加上服务间认证token
-            builder.header(X_CLIENT_TOKEN, "TODO zhoutaoo添加服务间简单认证");
+            builder.header(X_CLIENT_TOKEN, "TODO 添加服务间简单认证");
             //将jwt token中的用户信息传给服务
-            builder.header(X_CLIENT_TOKEN_USER, authService.getJwt(authentication).getClaims());
+            builder.header(X_CLIENT_TOKEN_USER, authService.getJwtString(authentication));
             return chain.filter(exchange.mutate().request(builder.build()).build());
         }
         return unauthorized(exchange);

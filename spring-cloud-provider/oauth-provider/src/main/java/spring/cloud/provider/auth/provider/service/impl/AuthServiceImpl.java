@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
      * 默认/oauth开头是不需要的
      */
     @Value("${gateway.ignore.authentication.startWith}")
-    private String ignoreUrls = "/oauth";
+    private String ignoreUrls = "/oauth,/v2/api-docs";
     /**
      * jwt验签
      */
@@ -83,6 +83,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Jwt getJwt(String authentication) {
-        return JwtHelper.decode(StringUtils.substring(authentication, BEARER_BEGIN_INDEX));
+        return JwtHelper.decode(authentication);
+    }
+
+    @Override
+    public String getJwtString(String authentication) {
+        return JwtHelper.decode(authentication).getClaims();
     }
 }
