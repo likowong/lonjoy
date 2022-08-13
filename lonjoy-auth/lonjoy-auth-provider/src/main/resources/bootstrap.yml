@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: lonjoy-auth-provider
+    cloud:
+        nacos:
+            config:
+                namespace: 1d607e88-f7ec-43b7-a18c-f669d415d488
+                file-extension: yaml
+                server-addr: http://175.178.86.252:8848
+    profiles:
+        active: dev

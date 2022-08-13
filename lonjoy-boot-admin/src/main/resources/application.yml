@@ -1,0 +1,29 @@
+#server:
+#  port: 8060
+#
+#####服务监控server端
+#spring:
+#  application:
+#    name: lonjoy-boot-admin
+#  cloud:
+#    nacos:
+#      discovery:
+#        namespace: cc1b2182-baa9-4731-9d2f-1a7a4a459fe8
+#        server-addr: 175.178.86.252:8848
+#  security:
+#    user:
+#      name: "admin"
+#      password: "admin"
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+#
+## 日志 集成logging后需设置日志路径
+#logging:
+#  file:
+#    name: /application/applogs/admin.log

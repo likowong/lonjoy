@@ -1,0 +1,80 @@
+#server:
+#  port: 9999
+#spring:
+#  application:
+#    name: lonjoy-gateway
+#  cloud:
+#    #    sentinel:
+#    #      transport:
+#    #        dashboard: 127.0.0.1:8080
+#    #      datasource:
+#    #        ds1:
+#    #          nacos:
+#    #            server-addr: 127.0.0.1:8848
+#    #            dataId: spring-cloud-alibaba-sentinel-service
+#    #            groupId: DEFAULT_GROUP
+#    #            data-type: json
+#    #            rule-type: flow
+#    #      filter:
+#    #        enable: true
+#    nacos:
+#      discovery:
+#        namespace: 1d607e88-f7ec-43b7-a18c-f669d415d488
+#        server-addr: 175.178.86.252:8848
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#      routes:
+#        - id: lonjoy-auth-provider
+#          uri: lb://lonjoy-auth-provider
+#          predicates:
+#            - Path=/oauth/**
+#          filters:
+#            - StripPrefix=1
+## fegin配置
+#feign:
+#  hystrix:
+#    enabled: true
+#  client:
+#    config:
+#      default:
+#        connect-timeout: 5000
+#        read-timeout: 5000
+#        exception:
+#          timeout:
+#            enable: false
+#  boot:
+#    admin:
+#      client:
+#        url: 127.0.0.1:8060
+#        username: "admin"
+#        password: "admin"
+#        instance:
+#          prefer-ip: true
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+#swagger:
+#  ignore:
+#    client:
+#      client-Ids:
+#gateway:
+#  ignore:
+#    authentication:
+#      startWith: /oauth,/open,/v2/api-docs,/swagger,/webjars
+#logging:
+#  config: classpath:logging-config.xml
+#  level:
+#    org:
+#      springframework:
+#        web: info
+#  pattern:
+#    #     日志高亮
+#    file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx'
