@@ -24,6 +24,7 @@
         <module>lonjoy-auth</module>
         <module>lonjoy-framework</module>
         <module>lonjoy-boot-admin</module>
+        <module>lonjoy-external-open</module>
     </modules>
     <dependencyManagement>
         <dependencies>
