@@ -18,7 +18,7 @@ import static com.lonjoy.common.ApplicationResponseCode.SERVICE_FAILED;
 @FeignClient(name = AuthConstant.projectName, contextId = "accountRemoteInterface", fallback = AccountRemoteInterface.AuthRemoteInterfaceHystrix.class)
 public interface AccountRemoteInterface extends AccountInterface {
     @Component
-    public static class AuthRemoteInterfaceHystrix implements AccountRemoteInterface {
+    public static class AuthRemoteInterfaceHystrix implements AccountInterface {
         /**
          * @param userId
          * @return UserInfo

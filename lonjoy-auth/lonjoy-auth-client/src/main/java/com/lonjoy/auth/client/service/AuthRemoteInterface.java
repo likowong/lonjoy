@@ -19,7 +19,7 @@ import static com.lonjoy.common.ApplicationResponseCode.SERVICE_FAILED;
 @FeignClient(name = AuthConstant.projectName,contextId = "authRemoteInterface",fallback = AuthRemoteInterface.AuthRemoteInterfaceHystrix.class)
 public interface AuthRemoteInterface extends AuthInterface {
     @Component
-    public static class AuthRemoteInterfaceHystrix implements AuthRemoteInterface {
+    public static class AuthRemoteInterfaceHystrix implements AuthInterface {
         @Override
         public ResResult pwdLogin(PwdLoginParams pwdLoginParams) {
             return ResResult.fail(SERVICE_FAILED);
