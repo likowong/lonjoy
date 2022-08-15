@@ -57,6 +57,11 @@
             <artifactId>lonjoy-framework-valid</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.lonjoy</groupId>
+            <artifactId>lonjoy-framework-rabbitmq</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!--  provider clients      -->
         <dependency>
             <groupId>com.lonjoy</groupId>

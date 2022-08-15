@@ -11,6 +11,16 @@
 #        metadata:
 #          user.name: "admin"
 #          user.password: "admin"
+#  rabbitmq:
+#    host: 127.0.0.1
+#    post: 5672
+#    username: guest
+#    password: guest
+#    listener:
+#        simple:
+#          # 开启消费端手动确认
+#          acknowledge-mode: manual
+#          prefetch: 4
 #  datasource:
 #    # jdbc 连接基础配置
 #    username: root
