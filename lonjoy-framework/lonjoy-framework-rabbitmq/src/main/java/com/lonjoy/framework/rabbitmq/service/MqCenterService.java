@@ -41,8 +41,8 @@ public class MqCenterService {
     public static final String X_RETRIES_HEADER = "x-retries";
     public static final String X_DEAD_LETTER_EXCHANGE = "x-dead-letter-exchange";
     public static final String X_DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
-    public static final String DLQ_ROUTING_EXCHANGE = "kye.dlq.exchange";
-    public static final String DLQ_NAME = "kye.dlq";
+    public static final String DLQ_ROUTING_EXCHANGE = "lonjoy.dlq.exchange";
+    public static final String DLQ_NAME = "lonjoy.dlq";
     @Value("${mqserver.consumer.max.retries:10}")
     private int maxRetries;
     @Value("${mqserver.consumer.sleep.service-not-found:30}")
@@ -180,16 +180,16 @@ public class MqCenterService {
 
     private Queue createQueue(String queue) {
         Map<String, Object> param = new HashMap();
-        param.put("x-dead-letter-exchange", "kye.dlq.exchange");
-        param.put("x-dead-letter-routing-key", "kye.dlq");
+        param.put("x-dead-letter-exchange", "lonjoy.dlq.exchange");
+        param.put("x-dead-letter-routing-key", "lonjoy.dlq");
         param.put("x-max-priority", 100);
         return new Queue(queue, true, false, false, param);
     }
 
     private void createDealLetter(RabbitAdmin rabbitAdmin) {
-        DirectExchange exchange = new DirectExchange("kye.dlq.exchange");
-        Queue queue = new Queue("kye.dlq");
-        Binding binding = BindingBuilder.bind(queue).to(exchange).with("kye.dlq");
+        DirectExchange exchange = new DirectExchange("lonjoy.dlq.exchange");
+        Queue queue = new Queue("lonjoy.dlq");
+        Binding binding = BindingBuilder.bind(queue).to(exchange).with("lonjoy.dlq");
         rabbitAdmin.declareExchange(exchange);
         rabbitAdmin.declareQueue(queue);
         rabbitAdmin.declareBinding(binding);
